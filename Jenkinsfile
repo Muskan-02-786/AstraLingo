@@ -31,7 +31,15 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t astralingo:v2 .'
+                // IMPORTANT FIX: Dockerfile is inside AstraLingo folder
+                bat 'cd AstraLingo && docker build -t astralingo:v2 .'
+            }
+        }
+
+        stage('Run Container (Optional Test)') {
+            steps {
+                bat 'docker rm -f astralingo || exit 0'
+                bat 'docker run -d -p 9090:80 --name astralingo astralingo:v2'
             }
         }
 
