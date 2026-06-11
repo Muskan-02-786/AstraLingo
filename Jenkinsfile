@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
 
     stages {
@@ -31,15 +30,14 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                // IMPORTANT FIX: Dockerfile is inside AstraLingo folder
-                bat 'cd AstraLingo && docker build -t astralingo:v2 .'
+                bat 'cd AstraLingo && docker build --pull=false -t astralingo:v2 .'
             }
         }
 
-        stage('Run Container (Optional Test)') {
+        stage('Run Container') {
             steps {
                 bat 'docker rm -f astralingo || exit 0'
-                bat 'docker run -d -p 9090:80 --name astralingo astralingo:v2'
+                bat 'docker run -d -p 9090:8080 --name astralingo astralingo:v2'
             }
         }
 
