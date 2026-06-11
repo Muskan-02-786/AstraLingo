@@ -5,36 +5,49 @@ pipeline {
     stages {
 
         stage('Checkout') {
-
             steps {
-
                 git branch: 'master',
                 url: 'https://github.com/Muskan-02-786/AstraLingo.git'
             }
         }
 
         stage('Restore') {
-
             steps {
-
                 bat 'dotnet restore AstraLingo.sln'
             }
         }
 
         stage('Build') {
-
             steps {
-
                 bat 'dotnet build AstraLingo.sln --configuration Release'
             }
         }
 
         stage('Publish') {
-
             steps {
-
                 bat 'dotnet publish AstraLingo/AstraLingo.csproj -c Release -o publish'
             }
+        }
+
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t astralingo:v2 .'
+            }
+        }
+
+        stage('Ansible Deploy') {
+            steps {
+                bat 'ansible-playbook -i ansible/inventory.ini ansible/deploy.yml'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment Successful '
+        }
+        failure {
+            echo 'Deployment Failed '
         }
     }
 }
