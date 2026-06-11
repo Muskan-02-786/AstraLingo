@@ -1,0 +1,29 @@
+﻿@model AstraLingo.Models.User
+
+<div class="container mt-5">
+
+    <h1>Edit User</h1>
+
+    <form method="post">
+
+        <input type="hidden"
+               asp-for="UserId" />
+
+        <input asp-for="Name"
+               class="form-control mt-2" />
+
+        <input asp-for="Email"
+               class="form-control mt-2" />
+
+        <input asp-for="Password"
+               class="form-control mt-2" />
+
+        <button class="btn btn-warning mt-3">
+
+            Update
+
+        </button>
+
+    </form>
+
+</div>

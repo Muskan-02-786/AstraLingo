@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Daily Spin";
+}
+
+<style>
+
+    body {
+        background: linear-gradient(135deg, #f7971e, #ffd200);
+        color: white;
+    }
+
+    .spin-card {
+        background: rgba(255,255,255,0.18);
+        backdrop-filter: blur(10px);
+        border-radius: 30px;
+        padding: 60px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+
+    .spin-wheel {
+        font-size: 120px;
+    }
+
+    .reward-text {
+        font-size: 35px;
+        font-weight: bold;
+        margin-top: 40px;
+    }
+
+</style>
+
+
+
+<div class="container py-5">
+
+    <div class="spin-card mx-auto"
+         style="max-width:700px;">
+
+        <h1>
+
+            🎡 Daily Spin Wheel
+
+        </h1>
+
+        <br />
+        <br />
+
+        <div class="spin-wheel">
+
+            🎯
+
+        </div>
+
+        <br />
+
+        <div class="reward-text">
+
+            @TempData["Reward"]
+
+        </div>
+
+        <br />
+        <br />
+
+        <a href="/Dashboard"
+           class="btn btn-dark btn-lg">
+
+            Back To Dashboard 🚀
+
+        </a>
+
+    </div>
+
+</div>

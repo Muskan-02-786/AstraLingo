@@ -1,0 +1,103 @@
+﻿@model List<AstraLingo.Models.Language>
+
+@{
+    ViewData["Title"] = "Manage Languages";
+}
+
+<style>
+
+    body {
+        background: linear-gradient(135deg,#141e30,#243b55);
+        color: white;
+    }
+
+    .table-box {
+        background: rgba(255,255,255,0.12);
+        padding: 30px;
+        border-radius: 20px;
+        margin-top: 40px;
+    }
+
+</style>
+
+<div class="container py-5">
+
+    <h1 class="text-center mb-4">
+
+        🌍 Manage Languages
+
+    </h1>
+
+    <a asp-action="Create"
+       class="btn btn-success mb-4">
+
+        ➕ Add New Language
+
+    </a>
+
+    <div class="table-box">
+
+        <table class="table table-dark table-hover">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Description</th>
+
+                    <th>Required Level</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.LanguageId</td>
+
+                        <td>@item.Name</td>
+
+                        <td>@item.Description</td>
+
+                        <td>@item.RequiredLevel</td>
+
+                        <td>
+
+                            <a asp-action="Edit"
+                               asp-route-id="@item.LanguageId"
+                               class="btn btn-warning btn-sm">
+
+                                Edit
+
+                            </a>
+
+                            <a asp-action="Delete"
+                               asp-route-id="@item.LanguageId"
+                               class="btn btn-danger btn-sm">
+
+                                Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

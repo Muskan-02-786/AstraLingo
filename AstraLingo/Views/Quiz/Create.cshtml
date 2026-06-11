@@ -1,0 +1,54 @@
+﻿@model AstraLingo.Models.Quiz
+
+<div class="container mt-5">
+
+    <div class="card shadow p-5">
+
+        <h2 class="text-center mb-4">
+
+            ➕ Add Quiz
+
+        </h2>
+
+        <form method="post">
+
+            <input asp-for="Question"
+                   class="form-control mt-3"
+                   placeholder="Question" />
+
+            <input asp-for="OptionA"
+                   class="form-control mt-3"
+                   placeholder="Option A" />
+
+            <input asp-for="OptionB"
+                   class="form-control mt-3"
+                   placeholder="Option B" />
+
+            <input asp-for="OptionC"
+                   class="form-control mt-3"
+                   placeholder="Option C" />
+
+            <input asp-for="OptionD"
+                   class="form-control mt-3"
+                   placeholder="Option D" />
+
+            <input asp-for="CorrectAnswer"
+                   class="form-control mt-3"
+                   placeholder="Correct Answer" />
+
+            <input asp-for="LanguageId"
+                   class="form-control mt-3"
+                   placeholder="Language Id" />
+
+            <button type="submit"
+                    class="btn btn-success mt-4 w-100">
+
+                Save Quiz
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

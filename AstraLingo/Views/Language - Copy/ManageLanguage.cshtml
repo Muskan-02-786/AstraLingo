@@ -1,0 +1,84 @@
+﻿@model List<AstraLingo.Models.Language>
+
+@{
+    ViewData["Title"] = "Manage Languages";
+}
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between mb-4">
+
+        <h1>🌍 Manage Languages</h1>
+
+        <a asp-action="Create"
+           class="btn btn-success">
+
+            + Add Language
+
+        </a>
+
+    </div>
+
+
+    <table class="table table-dark table-hover">
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Name</th>
+
+                <th>Description</th>
+
+                <th>Required Level</th>
+
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.LanguageId</td>
+
+                    <td>@item.Name</td>
+
+                    <td>@item.Description</td>
+
+                    <td>@item.RequiredLevel</td>
+
+                    <td>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@item.LanguageId"
+                           class="btn btn-warning btn-sm">
+
+                            Edit
+
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.LanguageId"
+                           class="btn btn-danger btn-sm">
+
+                            Delete
+
+                        </a>
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

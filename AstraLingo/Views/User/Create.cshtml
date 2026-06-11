@@ -1,0 +1,38 @@
+﻿@model AstraLingo.Models.User
+
+<h1>Create User</h1>
+
+<form method="post">
+
+    <input asp-for="Name"
+           class="form-control mt-2"
+           placeholder="Name" />
+
+    <input asp-for="Email"
+           class="form-control mt-2"
+           placeholder="Email" />
+
+    <input asp-for="Password"
+           class="form-control mt-2"
+           placeholder="Password" />
+
+    <input asp-for="XP"
+           class="form-control mt-2"
+           placeholder="XP" />
+
+    <input asp-for="Level"
+           class="form-control mt-2"
+           placeholder="Level" />
+
+    <input asp-for="Streak"
+           class="form-control mt-2"
+           placeholder="Streak" />
+
+    <button type="submit"
+            class="btn btn-primary mt-3">
+
+        Save
+
+    </button>
+
+</form>

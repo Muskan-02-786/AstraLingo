@@ -1,0 +1,316 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<style>
+
+    body {
+        background: linear-gradient( 135deg, #141e30, #243b55);
+        min-height: 100vh;
+        color: white;
+    }
+
+
+    .admin-title {
+        font-size: 55px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+
+    .admin-card {
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(10px);
+        border-radius: 25px;
+        padding: 40px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        transition: 0.4s;
+        height: 100%;
+    }
+
+
+        .admin-card:hover {
+            transform: translateY(-10px) scale(1.03);
+        }
+
+
+    .admin-icon {
+        font-size: 70px;
+        margin-bottom: 20px;
+    }
+
+
+    .admin-btn {
+        border-radius: 15px;
+        font-weight: bold;
+        padding: 12px;
+        transition: 0.3s;
+    }
+
+
+        .admin-btn:hover {
+            transform: scale(1.05);
+        }
+
+</style>
+
+
+
+<div class="container py-5">
+
+
+    <!-- TITLE -->
+
+    <h1 class="admin-title">
+
+        👑 AstraLingo Admin Panel
+
+    </h1>
+
+
+
+    <!-- STATS -->
+
+    <div class="row mb-5">
+
+
+        <div class="col-md-3 mb-4">
+
+            <div class="admin-card">
+
+                <div class="admin-icon">
+
+                    👥
+
+                </div>
+
+                <h2>
+
+                    @ViewBag.TotalUsers
+
+                </h2>
+
+                <h4>
+
+                    Total Users
+
+                </h4>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-3 mb-4">
+
+            <div class="admin-card">
+
+                <div class="admin-icon">
+
+                    🌍
+
+                </div>
+
+                <h2>
+
+                    @ViewBag.TotalLanguages
+
+                </h2>
+
+                <h4>
+
+                    Languages
+
+                </h4>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-3 mb-4">
+
+            <div class="admin-card">
+
+                <div class="admin-icon">
+
+                    🎯
+
+                </div>
+
+                <h2>
+
+                    @ViewBag.TotalQuizzes
+
+                </h2>
+
+                <h4>
+
+                    Quizzes
+
+                </h4>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-3 mb-4">
+
+            <div class="admin-card">
+
+                <div class="admin-icon">
+
+                    📚
+
+                </div>
+
+                <h2>
+
+                    @ViewBag.TotalLessons
+
+                </h2>
+
+                <h4>
+
+                    Lessons
+
+                </h4>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MANAGEMENT -->
+
+    <div class="row">
+
+
+        <!-- USERS -->
+
+        <div class="col-md-4 mb-4">
+
+            <div class="admin-card">
+
+                <div class="admin-icon">
+
+                    👥
+
+                </div>
+
+                <h2>
+
+                    Manage Users
+
+                </h2>
+
+                <br />
+
+                <a asp-controller="User"
+                   asp-action="Index"
+                   class="btn btn-light w-100 admin-btn">
+
+                    Open Users
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LANGUAGES -->
+
+        <div class="col-md-4 mb-4">
+
+            <div class="admin-card">
+
+                <div class="admin-icon">
+
+                    🌍
+
+                </div>
+
+                <h2>
+
+                    Manage Languages
+
+                </h2>
+
+                <br />
+
+                <a asp-controller="Language"
+                   asp-action="ManageLanguage"
+                   class="btn btn-warning w-100 admin-btn">
+
+                    Open Languages
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUIZZES -->
+
+        <div class="col-md-4 mb-4">
+
+            <div class="admin-card">
+
+                <div class="admin-icon">
+
+                    🎯
+
+                </div>
+
+                <h2>
+
+                    Manage Quizzes
+
+                </h2>
+
+                <br />
+
+                <a asp-controller="Quiz"
+                   asp-action="ManageQuiz"
+                   class="btn btn-success w-100 admin-btn">
+
+                    Open Quizzes
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- LOGOUT -->
+
+    <div class="text-center mt-5">
+
+        <a asp-controller="Account"
+           asp-action="Logout"
+           class="btn btn-danger btn-lg px-5">
+
+            Logout
+
+        </a>
+
+    </div>
+
+</div>

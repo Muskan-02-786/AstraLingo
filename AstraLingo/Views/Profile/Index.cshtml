@@ -1,0 +1,57 @@
+﻿@model AstraLingo.Models.User
+
+<div class="container text-center mt-5">
+
+    <h1>
+        👤 My Profile
+    </h1>
+
+    <hr />
+
+
+    @if (!string.IsNullOrEmpty(Model.ProfileImage))
+    {
+        <img src="/images/@Model.ProfileImage"
+             width="150"
+             height="150" />
+    }
+
+
+    <form method="post"
+          action="/Profile/Upload"
+          enctype="multipart/form-data">
+
+        <input type="file"
+               name="file"
+               class="form-control mt-3" />
+
+        <button type="submit"
+                class="btn btn-success mt-3">
+
+            Upload Photo
+
+        </button>
+
+        <a href="/Profile/RemovePhoto"
+           class="btn btn-danger mt-3">
+
+            Remove Photo
+
+        </a>
+
+    </form>
+
+
+    <hr />
+
+    <h3>Name : @Model.Name</h3>
+
+    <h3>Email : @Model.Email</h3>
+
+    <h3>XP : @Model.XP</h3>
+
+    <h3>Level : @Model.Level</h3>
+
+    <h3>Streak : @Model.Streak Days 🔥</h3>
+
+</div>

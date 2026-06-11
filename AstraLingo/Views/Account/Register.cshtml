@@ -1,0 +1,271 @@
+﻿@model AstraLingo.Models.User
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+
+    body {
+        background: linear-gradient( 135deg, #43cea2, #185a9d);
+        min-height: 100vh;
+    }
+
+
+    .register-card {
+        width: 450px;
+        border-radius: 25px;
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+
+    .register-btn {
+        background: linear-gradient( to right, #43cea2, #185a9d);
+        border: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+
+        .register-btn:hover {
+            transform: scale(1.03);
+            background: linear-gradient( to right, #185a9d, #43cea2);
+        }
+
+
+    .logo-text {
+        color: #185a9d;
+        font-weight: bold;
+    }
+
+</style>
+
+
+
+<div class="container d-flex justify-content-center align-items-center"
+     style="min-height:90vh;">
+
+    <div class="register-card p-5">
+
+        <div class="text-center">
+
+            <h1 class="logo-text">
+
+                🚀 AstraLingo
+
+            </h1>
+
+            <h3 class="mt-3">
+
+                ✨ Create Account
+
+            </h3>
+
+            <p class="text-muted">
+
+                Start your learning adventure today
+
+            </p>
+
+        </div>
+
+
+
+        <form method="post"
+              onsubmit="return validatePassword()">
+
+            <!-- NAME -->
+
+            <input asp-for="Name"
+                   class="form-control mt-4 p-3"
+                   placeholder="Enter Name"
+                   required />
+
+            <span asp-validation-for="Name"
+                  class="text-danger"></span>
+
+
+
+            <!-- EMAIL -->
+
+            <input asp-for="Email"
+                   class="form-control mt-3 p-3"
+                   placeholder="Enter Email"
+                   required />
+
+            <span asp-validation-for="Email"
+                  class="text-danger"></span>
+
+
+
+            <!-- PASSWORD -->
+
+            <div class="input-group mt-3">
+
+                <input asp-for="Password"
+                       type="password"
+                       id="password"
+                       class="form-control p-3"
+                       placeholder="Enter Password"
+                       required />
+
+                <button type="button"
+                        class="btn btn-outline-secondary"
+                        onclick="togglePassword()">
+
+                    👁️
+
+                </button>
+
+            </div>
+
+            <span asp-validation-for="Password"
+                  class="text-danger"></span>
+
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="input-group mt-3">
+
+                <input type="password"
+                       id="confirmPassword"
+                       class="form-control p-3"
+                       placeholder="Confirm Password"
+                       required />
+
+                <button type="button"
+                        class="btn btn-outline-secondary"
+                        onclick="toggleConfirmPassword()">
+
+                    👁️
+
+                </button>
+
+            </div>
+
+
+
+            <!-- PASSWORD ERROR -->
+
+            <div id="passwordError"
+                 class="text-danger mt-2"
+                 style="display:none;">
+
+                Passwords do not match ❌
+
+            </div>
+
+
+
+            <!-- REGISTER BUTTON -->
+
+            <button type="submit"
+                    class="btn register-btn text-white w-100 mt-4 p-3">
+
+                Register 🚀
+
+            </button>
+
+        </form>
+
+
+
+        <!-- LOGIN -->
+
+        <div class="text-center mt-4">
+
+            Already have an account?
+
+            <a asp-controller="Account"
+               asp-action="Login"
+               class="fw-bold text-decoration-none">
+
+                Login
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    // SHOW/HIDE PASSWORD
+
+    function togglePassword()
+    {
+        var pass =
+            document.getElementById(
+                "password");
+
+        if (pass.type === "password")
+        {
+            pass.type = "text";
+        }
+        else
+        {
+            pass.type = "password";
+        }
+    }
+
+
+
+    // SHOW/HIDE CONFIRM PASSWORD
+
+    function toggleConfirmPassword()
+    {
+        var pass =
+            document.getElementById(
+                "confirmPassword");
+
+        if (pass.type === "password")
+        {
+            pass.type = "text";
+        }
+        else
+        {
+            pass.type = "password";
+        }
+    }
+
+
+
+    // PASSWORD MATCH VALIDATION
+
+    function validatePassword()
+    {
+        var password =
+            document.getElementById(
+                "password").value;
+
+        var confirmPassword =
+            document.getElementById(
+                "confirmPassword").value;
+
+        var error =
+            document.getElementById(
+                "passwordError");
+
+
+        if (password !== confirmPassword)
+        {
+            error.style.display =
+                "block";
+
+            return false;
+        }
+
+        error.style.display =
+            "none";
+
+        return true;
+    }
+
+</script>

@@ -1,0 +1,55 @@
+﻿@model AstraLingo.Models.Quiz
+
+@{
+    ViewData["Title"] = "Delete Quiz";
+}
+
+<div class="container mt-5 text-center">
+
+    <h1 class="text-danger">
+
+        🗑 Delete Quiz
+
+    </h1>
+
+    <br />
+
+    <h3>
+
+        Are you sure?
+
+    </h3>
+
+    <br />
+
+    <h4>
+
+        @Model.Question
+
+    </h4>
+
+    <br />
+
+    <form asp-action="DeleteConfirmed"
+          method="post">
+
+        <input type="hidden"
+               asp-for="QuizId" />
+
+        <button type="submit"
+                class="btn btn-danger">
+
+            Yes Delete
+
+        </button>
+
+        <a asp-action="ManageQuiz"
+           class="btn btn-secondary">
+
+            Cancel
+
+        </a>
+
+    </form>
+
+</div>

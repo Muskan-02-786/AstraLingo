@@ -1,0 +1,81 @@
+﻿@model List<AstraLingo.Models.Quiz>
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between mb-4">
+
+        <h2>🎯 Manage Quizzes</h2>
+
+        <a asp-controller="Quiz"
+           asp-action="Create"
+           class="btn btn-success">
+
+            ➕ Add Quiz
+
+        </a>
+
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>ID</th>
+                <th>Question</th>
+                <th>Correct Answer</th>
+                <th>Language</th>
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.QuizId</td>
+
+                    <td>@item.Question</td>
+
+                    <td>@item.CorrectAnswer</td>
+
+                    <td>@item.LanguageId</td>
+
+                    <td>
+
+                        <a asp-controller="Quiz"
+                           asp-action="Edit"
+                           asp-route-id="@item.QuizId"
+                           class="btn btn-warning btn-sm">
+
+                            Edit
+
+                        </a>
+
+
+                        <a asp-controller="Quiz"
+                           asp-action="Delete"
+                           asp-route-id="@item.QuizId"
+                           class="btn btn-danger btn-sm">
+
+                            Delete
+
+                        </a>
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

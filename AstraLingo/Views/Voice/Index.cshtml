@@ -1,0 +1,240 @@
+﻿@{
+    ViewData["Title"] = "Voice Practice";
+}
+
+<style>
+
+    body {
+        background: linear-gradient( 135deg, #4facfe, #00f2fe);
+        min-height: 100vh;
+        color: white;
+    }
+
+    .voice-container {
+        padding-top: 60px;
+    }
+
+    .voice-card {
+        background: rgba(255,255,255,0.18);
+        backdrop-filter: blur(12px);
+        border-radius: 35px;
+        padding: 50px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    .voice-title {
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .voice-subtitle {
+        font-size: 20px;
+        opacity: 0.9;
+    }
+
+    .mic-button {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: none;
+        background: white;
+        color: #00bfff;
+        font-size: 60px;
+        margin-top: 40px;
+        transition: 0.3s;
+    }
+
+        .mic-button:hover {
+            transform: scale(1.08);
+            background: #ffe600;
+            color: black;
+        }
+
+    .speech-box {
+        background: rgba(255,255,255,0.2);
+        border-radius: 20px;
+        padding: 30px;
+        margin-top: 40px;
+        min-height: 140px;
+    }
+
+    .speech-text {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .practice-card {
+        background: rgba(255,255,255,0.15);
+        border-radius: 25px;
+        padding: 25px;
+        margin-top: 25px;
+        transition: 0.3s;
+    }
+
+        .practice-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.25);
+        }
+
+</style>
+
+
+
+<div class="container voice-container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-9">
+
+            <div class="voice-card">
+
+                <h1 class="voice-title">
+
+                    🎤 Voice Practice
+
+                </h1>
+
+
+                <p class="voice-subtitle mt-3">
+
+                    Improve pronunciation and speaking confidence.
+
+                </p>
+
+
+                <button onclick="startListening()"
+                        class="mic-button">
+
+                    🎙️
+
+                </button>
+
+
+
+                <div class="speech-box">
+
+                    <h3>
+
+                        Your Speech:
+
+                    </h3>
+
+                    <div id="result"
+                         class="speech-text mt-4">
+
+                        Speak something...
+
+                    </div>
+
+                </div>
+
+
+                <div class="row mt-5">
+
+                    <div class="col-md-4">
+
+                        <div class="practice-card">
+
+                            <h4>
+
+                                🇺🇸 English
+
+                            </h4>
+
+                            <p>
+
+                                "Hello, how are you?"
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="practice-card">
+
+                            <h4>
+
+                                🇯🇵 Japanese
+
+                            </h4>
+
+                            <p>
+
+                                "Konnichiwa"
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="practice-card">
+
+                            <h4>
+
+                                💻 Programming
+
+                            </h4>
+
+                            <p>
+
+                                "ASP.NET MVC"
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    function startListening()
+    {
+        if ('webkitSpeechRecognition'
+            in window)
+        {
+            var recognition =
+                new webkitSpeechRecognition();
+
+            recognition.lang =
+                "en-US";
+
+            recognition.start();
+
+            recognition.onresult =
+                function(event)
+            {
+                document
+                    .getElementById("result")
+                    .innerHTML =
+                    event.results[0][0].transcript;
+            };
+        }
+        else
+        {
+            alert(
+                "Speech Recognition not supported in this browser.");
+        }
+    }
+
+</script>

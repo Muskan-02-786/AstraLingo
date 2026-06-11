@@ -1,0 +1,51 @@
+﻿@model List<AstraLingo.Models.User>
+
+<h1>User List</h1>
+
+<a asp-controller="User"
+   asp-action="Create"
+   class="btn btn-success">
+
+    Add User
+
+</a>
+
+<br />
+<br />
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>XP</th>
+        <th>Level</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserId</td>
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+            <td>@item.XP</td>
+            <td>@item.Level</td>
+
+            <td>
+
+                <a asp-controller="User"
+                   asp-action="Delete"
+                   asp-route-id="@item.UserId"
+                   class="btn btn-danger">
+
+                    Delete
+
+                </a>
+
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,132 @@
+﻿@model List<AstraLingo.Models.Mission>
+
+<style>
+
+    body {
+        background: linear-gradient( 135deg, #ff758c, #ff7eb3);
+        color: white;
+    }
+
+
+    .mission-card {
+        background: rgba(255,255,255,0.18);
+        backdrop-filter: blur(10px);
+        border-radius: 25px;
+        padding: 30px;
+        transition: 0.3s;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        height: 100%;
+    }
+
+
+        .mission-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+
+    .submit-btn {
+        border-radius: 15px;
+        font-weight: bold;
+        padding: 12px 25px;
+        transition: 0.3s;
+    }
+
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+
+</style>
+
+
+
+<div class="container py-5">
+
+    <h1 class="text-center mb-5">
+
+        🌍 Real-life Missions
+
+    </h1>
+
+
+    <div class="row">
+
+        @foreach (var mission in Model)
+        {
+            <div class="col-md-6 mt-4">
+
+                <div class="mission-card">
+
+                    <span class="
+                              badge
+                              bg-warning
+                              text-dark">
+
+                        🚀 Practical Task
+
+                    </span>
+
+
+                    <h2 class="mt-3">
+
+                        @mission.Title
+
+                    </h2>
+
+
+                    <p class="mt-3"
+                       style="
+                           font-size:18px;">
+
+                        @mission.Description
+
+                    </p>
+
+
+                    <form method="post"
+                          enctype="multipart/form-data"
+                          action="/Mission/Upload">
+
+                        <input type="hidden"
+                               name="id"
+                               value="@mission.MissionId" />
+
+
+                        <input type="file"
+                               name="file"
+                               class="form-control mt-4"
+                               required />
+
+
+                        <button type="submit"
+                                class="
+                                    btn btn-success
+                                    mt-4
+                                    submit-btn">
+
+                            Submit Mission 📤
+
+                        </button>
+
+                    </form>
+
+
+                    @if (mission.SubmissionFile != null)
+                    {
+                        <div class="
+                                     alert alert-success
+                                     mt-4">
+
+                            ✅ Mission Submitted Successfully
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>

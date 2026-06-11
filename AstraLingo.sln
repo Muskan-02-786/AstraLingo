@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37216.2 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstraLingo", "AstraLingo\AstraLingo.csproj", "{D58CAA2A-3BF3-4CF7-BA1F-A867D00F0971}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D58CAA2A-3BF3-4CF7-BA1F-A867D00F0971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D58CAA2A-3BF3-4CF7-BA1F-A867D00F0971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D58CAA2A-3BF3-4CF7-BA1F-A867D00F0971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D58CAA2A-3BF3-4CF7-BA1F-A867D00F0971}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE834D44-0551-4A2A-B9C3-BC1364F4EA63}
+	EndGlobalSection
+EndGlobal
