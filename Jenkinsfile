@@ -40,12 +40,6 @@ pipeline {
                 bat 'docker run -d -p 9090:8080 --name astralingo astralingo:v2'
             }
         }
-
-        stage('Ansible Deploy') {
-            steps {
-                bat 'ansible-playbook -i ansible/inventory.ini ansible/deploy.yml'
-            }
-        }
     }
 
     post {
