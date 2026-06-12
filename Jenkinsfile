@@ -37,7 +37,13 @@ pipeline {
         stage('Run Container') {
             steps {
                 bat 'docker rm -f astralingo || exit 0'
-                bat 'docker run -d -p 9090:8080 --name astralingo astralingo:v2'
+                bat 'docker run -d -p 9090:80 --name astralingo astralingo:v2'
+            }
+        }
+
+        stage('Ansible Deploy') {
+            steps {
+                bat 'wsl bash -c "cd /mnt/d/MUSKAN/AstraLingo/AstraLingo/AstraLingo && ansible-playbook -i ansible/inventory.ini ansible/deploy.yml"'
             }
         }
     }
