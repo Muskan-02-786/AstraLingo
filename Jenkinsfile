@@ -5,8 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'master',
-                url: 'https://github.com/Muskan-02-786/AstraLingo.git'
+                git url: 'https://github.com/Muskan-02-786/AstraLingo.git', branch: 'master'
             }
         }
 
@@ -30,30 +29,46 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'cd AstraLingo && docker build --pull=false -t astralingo:v2 .'
+                bat '''
+                cd AstraLingo && docker build -t astralingo:v2 .
+                '''
             }
         }
 
         stage('Run Container') {
             steps {
-                bat 'docker rm -f astralingo || exit 0'
-                bat 'docker run -d -p 9090:80 --name astralingo astralingo:v2'
+                bat '''
+                docker rm -f astralingo || exit 0
+                docker run -d -p 9090:80 --name astralingo astralingo:v2
+                '''
+            }
+        }
+
+        // ✅ TEST WSL (YOU ASKED FOR THIS)
+        stage('Test WSL') {
+            steps {
+                bat 'wsl echo hello'
             }
         }
 
         stage('Ansible Deploy') {
             steps {
-                bat 'wsl bash -c "cd /mnt/d/MUSKAN/AstraLingo/AstraLingo/AstraLingo && ansible-playbook -i ansible/inventory.ini ansible/deploy.yml"'
+                bat '''
+                wsl bash -lc "
+                cd /mnt/d/MUSKAN/AstraLingo/AstraLingo/AstraLingo &&
+                ansible-playbook -i ansible/inventory.ini ansible/deploy.yml
+                "
+                '''
             }
         }
     }
 
     post {
         success {
-            echo 'Deployment Successful '
+            echo 'Deployment Successful'
         }
         failure {
-            echo 'Deployment Failed '
+            echo 'Deployment Failed'
         }
     }
 }
