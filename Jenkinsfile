@@ -9,6 +9,12 @@ pipeline {
             }
         }
 
+        stage('Restore') {
+            steps {
+                bat 'dotnet restore AstraLingo.sln'
+            }
+        }
+
         stage('Build') {
             steps {
                 bat 'dotnet build AstraLingo.sln -c Release'
@@ -17,7 +23,8 @@ pipeline {
 
         stage('Publish') {
             steps {
-                bat 'dotnet publish AstraLingo/AstraLingo.csproj -c Release -o publish'
+                // IMPORTANT FIX: publish INSIDE Docker context
+                bat 'dotnet publish AstraLingo/AstraLingo.csproj -c Release -o AstraLingo/publish'
             }
         }
 
@@ -27,10 +34,28 @@ pipeline {
             }
         }
 
-        stage('Deploy with Ansible (WSL)') {
+        stage('Run Container') {
             steps {
                 bat '''
-                wsl bash -lc "cd ~/ansible && ansible-playbook -i inventory.ini deploy.yml"
+                docker rm -f astralingo || exit 0
+                docker run -d -p 9090:8080 --name astralingo astralingo:v2
+                '''
+            }
+        }
+
+        stage('Test WSL') {
+            steps {
+                bat 'wsl echo hello'
+            }
+        }
+
+        stage('Ansible Deploy') {
+            steps {
+                bat '''
+                wsl bash -lc "
+                cd /mnt/c/Users/Muskan/ansible &&
+                ansible-playbook -i inventory.ini deploy.yml
+                "
                 '''
             }
         }
@@ -38,10 +63,10 @@ pipeline {
 
     post {
         success {
-            echo 'SUCCESS: App deployed'
+            echo 'PIPELINE SUCCESS '
         }
         failure {
-            echo 'FAILED pipeline'
+            echo 'PIPELINE FAILED '
         }
     }
 }
