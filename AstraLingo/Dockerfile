@@ -1,8 +1,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
+
 WORKDIR /app
-EXPOSE 8080
 
-ENV ASPNETCORE_URLS=http://+:8080
+COPY publish/ .
 
-COPY publish .
 ENTRYPOINT ["dotnet", "AstraLingo.dll"]
