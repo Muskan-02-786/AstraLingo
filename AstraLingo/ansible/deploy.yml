@@ -1,0 +1,9 @@
+- name: Deploy AstraLingo
+  hosts: local
+  tasks:
+
+    - name: Stop old container
+      shell: docker rm -f astralingo || true
+
+    - name: Run container
+      shell: docker run -d -p 9090:8080 --name astralingo astralingo:v2
