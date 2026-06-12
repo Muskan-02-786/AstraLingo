@@ -29,9 +29,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat '''
-                cd AstraLingo && docker build -t astralingo:v2 .
-                '''
+                bat 'docker build -t astralingo:v2 AstraLingo'
             }
         }
 
@@ -43,32 +41,14 @@ pipeline {
                 '''
             }
         }
-
-        // ✅ TEST WSL (YOU ASKED FOR THIS)
-        stage('Test WSL') {
-            steps {
-                bat 'wsl echo hello'
-            }
-        }
-
-        stage('Ansible Deploy') {
-            steps {
-                bat '''
-                wsl bash -lc "
-                cd /mnt/d/MUSKAN/AstraLingo/AstraLingo/AstraLingo &&
-                ansible-playbook -i ansible/inventory.ini ansible/deploy.yml
-                "
-                '''
-            }
-        }
     }
 
     post {
         success {
-            echo 'Deployment Successful'
+            echo 'CI/CD SUCCESS '
         }
         failure {
-            echo 'Deployment Failed'
+            echo 'CI/CD FAILED '
         }
     }
 }
