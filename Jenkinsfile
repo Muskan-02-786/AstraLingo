@@ -33,7 +33,7 @@ pipeline {
             }
         }
 
-        stage('Run Container') {
+        stage('Run Container (Local Test)') {
             steps {
                 bat '''
                 docker rm -f astralingo || exit 0
@@ -41,14 +41,25 @@ pipeline {
                 '''
             }
         }
+
+        stage('Deploy via Ansible') {
+            steps {
+                bat '''
+                wsl bash -lc "
+                cd /mnt/d/MUSKAN/ansible &&
+                ansible-playbook -i inventory.ini deploy.yml
+                "
+                '''
+            }
+        }
     }
 
     post {
         success {
-            echo 'CI/CD SUCCESS '
+            echo 'PIPELINE SUCCESS '
         }
         failure {
-            echo 'CI/CD FAILED '
+            echo 'PIPELINE FAILED '
         }
     }
 }
